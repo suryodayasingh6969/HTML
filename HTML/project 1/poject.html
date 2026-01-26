@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mini Dash 2026</title>
+    <style>
+        body { text-align: center; background: #222; color: white; font-family: Arial; overflow: hidden; }
+        canvas { background: #1e272e; border: 4px solid #fff; display: block; margin: 20px auto; }
+    </style>
+</head>
+<body>
+    <h1>Mini Geometry Dash</h1>
+    <p>Press <b>SPACE</b> or <b>CLICK</b> to Jump</p>
+    <canvas id="gameCanvas" width="800" height="300"></canvas>
+
+    <script>
+        const canvas = document.getElementById("gameCanvas");
+        const ctx = canvas.getContext("2d");
+
+        // Game Settings
+        let player = { x: 50, y: 200, w: 30, h: 30, dy: 0, jump: -10, gravity: 0.6, onGround: false };
+        let obstacles = [];
+        let score = 0;
+        let gameActive = true;
+
+        function drawPlayer() {
+            ctx.fillStyle = "#ff3f34"; // Red player cube
+            ctx.fillRect(player.x, player.y, player.w, player.h);
+        }
+
+        function createObstacle() {
+            if (Math.random() < 0.02) { // Randomly spawn obstacles
+                obstacles.push({ x: canvas.width, y: 230, w: 20, h: 40 });
+            }
+        }
+
+        function update() {
+            if (!gameActive) return;
+
+            // Physics: Gravity & Jumping
+            player.dy += player.gravity;
+            player.y += player.dy;
+
+            if (player.y + player.h > 270) { // Ground collision
+                player.y = 270 - player.h;
+                player.dy = 0;
+                player.onGround = true;
+            }
+
+            // Move Obstacles
+            obstacles.forEach((obs, index) => {
+                obs.x -= 6; // Speed of movement
+                
+                // Collision Detection
+                if (player.x < obs.x + obs.w && player.x + player.w > obs.x &&
+                    player.y < obs.y + obs.h && player.y + player.h > obs.y) {
+                    gameActive = false;
+                    alert("Game Over! Score: " + Math.floor(score));
+                    location.reload(); 
+                }
+                
+                if (obs.x + obs.w < 0) obstacles.splice(index, 1);
+            });
+
+            score += 0.1;
+            createObstacle();
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw Ground
+            ctx.fillStyle = "#fff";
+            ctx.fillRect(0, 270, canvas.width, 2);
+
+            drawPlayer();
+            
+            ctx.fillStyle = "#0fbcf9"; // Blue spikes
+            obstacles.forEach(obs => ctx.fillRect(obs.x, obs.y, obs.w, obs.h));
+            
+            ctx.fillStyle = "white";
+            ctx.fillText("Score: " + Math.floor(score), 20, 30);
+        }
+
+        function gameLoop() {
+            update();
+            draw();
+            requestAnimationFrame(gameLoop); // Smooth animation loop
+        }
+
+        // Controls
+        window.addEventListener("keydown", (e) => {
+            if (e.code === "Space" && player.onGround) {
+                player.dy = player.jump;
+                player.onGround = false;
+            }
+        });
+
+        canvas.addEventListener("mousedown", () => {
+            if (player.onGround) {
+                player.dy = player.jump;
+                player.onGround = false;
+            }
+        });
+
+        gameLoop();
+    </script>
+</body>
+</html>
