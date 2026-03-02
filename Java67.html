@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scope of Variables</title>
+</head>
+<body>
+
+    <h1>Scope of Variables</h1>
+    <button onclick="myfunc()">Click me</button>
+
+    <div id="result"></div>
+    <div id="result1"></div>
+    <div id="result2"></div>
+    <div id="result3"></div>
+
+    <script>
+        var b = 10;
+
+        function myfunc() {
+            var a = 7;
+
+            document.getElementById("result1").innerHTML =
+                "The product is " + (a * b);
+        }
+
+        document.getElementById("result2").innerHTML =
+            "The value of b is " + (b);
+
+        document.getElementById("result3").innerHTML =
+            "The value of a is " + (a);
+    </script>
+
+</body>
+</html>
