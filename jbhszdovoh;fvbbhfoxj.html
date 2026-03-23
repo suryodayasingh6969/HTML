@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Classes in JavaScript</title>
+</head>
+
+<body>
+
+<h1>Classes and objects</h1>
+
+<div id="res"></div>
+<div id="res1"></div>
+
+<script>
+class student {
+    constructor(name, year){
+        this.name = name;
+        this.year = year;
+    }
+
+    age(){
+        var yr = new Date().getFullYear();
+        var a = yr - this.year;
+
+        document.getElementById("res").innerHTML = 
+            "The name of the student is " + this.name;
+
+        document.getElementById("res1").innerHTML = 
+            "The age of the student is " + a;
+    }
+}
+
+// create object
+var student1 = new student("John", 2012);
+
+// call method
+student1.age();
+
+</script>
+
+</body>
+</html>

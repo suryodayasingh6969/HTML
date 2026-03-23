@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>class inheritence</title>
+</head>
+<html lang="en">
+<body>
+
+<script>
+class Car {
+    constructor(brand) {
+        this.brand = brand;
+    }
+    disp() {
+        return this.brand;
+    }
+}
+class Model extends Car {
+    constructor(brand, mod) {
+        super(brand);
+        this.mod = mod;
+    }
+    disp1() {
+        let a = this.disp();
+        return a + " " + this.mod;
+    }
+}
+    var model1  =new model("Toyota","Camry")
+    documment.getElementById("result").innerHTML= "The car brand and model is" +model1.disp1()
+</script>
+
+</body>
+</html>
+</body>
+</html>
