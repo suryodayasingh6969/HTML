@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="myid" type=number min = 20 max = 50 required>
+    <button oneclick ="check()">validate</button>
+    <p id="result"></p>
+    <script>
+        function check (){
+            var x = document.getElementById("myid")
+
+            if(!x.checkValidity())
+        {
+            document.getElementById("result").innerHTML = x.validationMessage;
+        }
+        else{
+           document.getElementById("result").innerHTML ="Input ok"
+        }
+        }
+    </script>
+</body>
+</html>
