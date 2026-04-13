@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: black;
+            color: gold;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 50px;
+        }
+
+        h1 {
+            font-size: 40px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px gold;
+        }
+
+        #result {
+            font-size: 24px;
+            padding: 15px;
+            border: 2px solid gold;
+            display: inline-block;
+            border-radius: 10px;
+            box-shadow: 0 0 15px gold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Palindrome App</h1>
+    <div id="result"></div>
+    <script>
+    function palindrome(mystring){
+    var input = mystring.replace(/[^A-Z0-9]/ig,"").toLowerCase()
+
+    var revinput = input.split("").reverse().join("")
+
+    if (input == revinput){
+        document.getElementById("result").innerHTML = input + " is a palindrome"
+    }
+    else{
+        document.getElementById("result").innerHTML = input + " is not a palindrome"
+    }
+}
+
+palindrome("bo")
+</script>
+</body>
+</html>
