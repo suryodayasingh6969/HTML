@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digi Calender</title>
+</head>
+<body>
+    <h1>Digi Calender</h1>
+    <div id ="result"></div>
+    <script>
+        function showtime(){
+            var date = new Date();
+            var y = date.getFullYear();
+            var m = date.getMonth();
+            var d = date.getDay();
+            var session = "AM";
+           y = (y < 10)?"0"+y:y
+           m = (m < 10)?"0"+m:m
+           d = (d < 10)?"0"+d:d
+           document.getElementById("result").innerHTML = y+":"+m+":"+d+ session
+           setTimeout(showtime,1000)
+        }
+        showtime()
+    </script>
+</body>
+</html>
