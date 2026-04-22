@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stop watch</title>
+</head>
+<body>
+    <h1>STOPWATCH</h1>
+    <div id="wrapper">
+        <span id="seconds">00</span> :
+        <span id="milliseconds">00</span>
+    </div>
+
+    <button id="button-start">start</button>
+    <button id="button-stop">stop</button>
+    <button id="button-reset">Reset</button>
+
+    <script>        
+        var sec = 0
+        var msec = 0
+
+        var appendsec = document.getElementById("seconds")
+        var appendmilliseconds = document.getElementById("milliseconds")
+
+        var bstart = document.getElementById("button-start")
+        var bstop = document.getElementById("button-stop")
+        var breset = document.getElementById("button-reset")
+
+        var interval
+
+        bstart.onclick = function(){
+            clearInterval(interval)
+            interval = setInterval(starttimer, 10)
+        }
+
+        bstop.onclick = function(){
+            clearInterval(interval)
+        }
+
+        breset.onclick = function(){
+            clearInterval(interval)
+            msec = 0
+            sec = 0
+            appendmilliseconds.innerHTML = "00"
+            appendsec.innerHTML = "00"
+        }
+
+        function starttimer(){
+            msec++
+
+            if (msec <= 9){
+                appendmilliseconds.innerHTML = "0" + msec
+            }
+
+            if (msec > 9){
+                appendmilliseconds.innerHTML = msec
+            }
+
+            if (msec > 99){
+                sec++
+                appendsec.innerHTML = "0" + sec
+                msec = 0
+                appendmilliseconds.innerHTML = "00"
+            }
+
+            if (sec > 9){
+                appendsec.innerHTML = sec
+            }
+        }
+    </script>
+
+</body>
+</html>
